@@ -57,7 +57,7 @@ const HeroSection = () => {
             height={950}
             alt="image sporton hero"
             // Gambar dibatasi lebarnya agar tidak menabrak teks di layar < 1300px
-            className="w-full max-w-[320px] md:max-w-[420px] xl:max-w-[500px] h-auto z-20 relative -translate-x-32"
+            className="w-full max-w-[320px] md:max-w-[420px] xl:max-w-[500px] h-auto z-20 relative -translate-x-16"
             priority
           />
           
