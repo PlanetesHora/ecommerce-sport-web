@@ -15,7 +15,7 @@
   --font-poppins: var(--font-poppins);
 }
 
-/* --- INI KUNCI BIAR GAK MEPET --- */
+/* Pagar utama agar otomatis menyesuaikan semua layar*/
 .pagar-konten {
   width: 100%;
   max-width: 1440px;
@@ -43,7 +43,7 @@
 
 @media (min-width: 1024px) {
   .pagar-konten {
-    padding-left: 60px; /* Jarak Laptop kamu (1272px) */
+    padding-left: 60px; /* Jarak Laptop aku (1272px) */
     padding-right: 60px;
   }
 }

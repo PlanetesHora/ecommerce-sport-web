@@ -4,10 +4,9 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    // Gunakan min-h-screen agar kalau kontennya panjang, section-nya ikut memanjang
     <section id="hero-section" className="pagar-konten relative min-h-screen flex items-center pt-28 lg:pt-0 overflow-hidden translate-y-8">
       
-      {/* Background Basketball dibuat lebih kecil & transparan agar tidak "penuh" */}
+      {/*BACKGROUND Basketball */}
       <Image
         src="/images/img-basketball.png"
         width={460} 
@@ -18,11 +17,10 @@ const HeroSection = () => {
 
       <div className="relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10">
         
-        {/* SISI KIRI: TEKS */}
+        {/* KIRI UNTUK TEKS */}
         <div className="w-full lg:w-[55%]">
           <div className="text-primary italic font-semibold mb-3 translate-x-40">Friday Sale, 50%</div>
-          
-          {/* PERUBAHAN UTAMA: Ukuran font diperkecil untuk layar menengah */}
+        
           <h1 className="font-extrabold italic leading-[1.05] bg-gradient-to-b from-black to-[#979797] bg-clip-text text-transparent
             text-4xl       /* HP */
             md:text-6xl    /* Tablet */
@@ -49,19 +47,20 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* SISI KANAN: GAMBAR */}
+        {/* KANAN UNTUK GAMBAR */}
         <div className="relative w-full lg:w-[45%] flex justify-center lg:justify-end">
+
+          {/*GAMBAR HERO*/}
           <Image
             src="/images/img-hero.png"
             width={700} 
             height={950}
             alt="image sporton hero"
-            // Gambar dibatasi lebarnya agar tidak menabrak teks di layar < 1300px
             className="w-full max-w-[320px] md:max-w-[420px] xl:max-w-[500px] h-auto z-20 relative -translate-x-16"
             priority
           />
           
-          {/* Ornamen Lingkaran dibuat mengikuti ukuran gambar */}
+          {/* ORNAMEN LINGKARAN */}
           <Image
             src="/images/img-ornamen-hero.svg"
             width={420}

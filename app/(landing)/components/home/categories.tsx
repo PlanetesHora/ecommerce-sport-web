@@ -13,13 +13,9 @@ const categoryList = [
 
 const CategoriesSection = () => {
   return (
-    /* PERBAIKAN 1: 
-      - Tambahkan mt-24 atau mt-32 untuk memberi jarak dari Hero.
-      - Tambahkan px-4 atau px-[98px] agar sejajar dengan container atas.
-    */
     <section id="category-section" className="pagar-konten mt-20 lg:mt-32 mb-20">
       
-      {/* PERBAIKAN 2: Gunakan items-end atau items-center agar teks sejajar dengan link */}
+      {/* HEADER SECTION untuk Judul dan Tombol See All */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
         <h2 className="font-bold text-2xl md:text-3xl text-[#1A1A1A]">Browse By Categories</h2>
         
@@ -32,7 +28,7 @@ const CategoriesSection = () => {
         </Link>
       </div>
 
-      {/* PERBAIKAN 3: Penyesuaian Grid Gap */}
+      {/* GRID KATEGORI */}
       <div className="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-6 gap-4 md:gap-6">
         {categoryList.map((category, index) => (
           <div

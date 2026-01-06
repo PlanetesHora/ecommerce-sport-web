@@ -4,7 +4,11 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-dark-alternate text-white mt-32 md:mt-52">
+
+      {/*BAGIAN ATAS UNTUK BRANDING DAN LINKS*/}
       <div className="pagar-konten flex flex-col lg:flex-row justify-between pt-16 pb-16 gap-12 lg:gap-20">
+
+        {/*BRANDING UNTUK LOGO DAN DESKRIPSI*/}
         <div className="w-full lg:max-w-sm">
           <Image
             src="/images/logo-footer.svg"
@@ -18,7 +22,11 @@ const Footer = () => {
             that moves as fast as you do.
           </p>
         </div>
+
+        {/*LINK NAVIGASI*/}
         <div className="w-full lg:flex-1 grid grid-cols-2 md:grid-cols-2 gap-8 lg:justify-items-end">
+
+          {/*KOLOM 1: SITEMAP*/}
           <div className="flex flex-col gap-5">
             <h4 className="font-bold text-lg mb-2">Sitemap</h4>
             <Link href="#" className="text-white-400 hover:text-primary transition-colors">Home</Link>
@@ -26,6 +34,8 @@ const Footer = () => {
             <Link href="#" className="text-white-400 hover:text-primary transition-colors">Products</Link>
             <Link href="#" className="text-white-400 hover:text-primary transition-colors">About Us</Link>
           </div>
+
+          {/*KOLOM 2:SOCIAL MEDIA*/}
           <div className="flex flex-col gap-5">
             <h4 className="font-bold text-lg mb-2">Social Media</h4>
             <Link href="#" className="text-white-400 hover:text-primary transition-colors">Instagram</Link>
@@ -35,6 +45,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/*BAGIAN BAWAH UNTUK COPYRIGHT DAN LEGAL*/}
       <div className="border-t border-t-white/10">
         <div className="pagar-konten py-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>SportsOn © 2025 All Rights Reserverd.</div>

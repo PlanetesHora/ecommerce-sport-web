@@ -6,6 +6,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-gray-50">
       <div className="pagar-konten flex items-center justify-between py-4 md:py-6">
+
+        {/*LOGO ada di kiri*/}
         <Image
           src="/images/logo.svg"
           alt="sporton logo"
@@ -13,6 +15,8 @@ const Header = () => {
           height={30}
           className="w-[100px] md:w-[127px] h-auto"
         />
+
+        {/*NAVIGASI*/}
         <nav className="hidden md:flex items-center gap-6 lg:gap-12 xl:gap-20 font-medium text-sm lg:text-base">
           <Link
             href="#"
@@ -23,6 +27,8 @@ const Header = () => {
           <Link href="#" className="hover:text-primary transition-colors whitespace-nowrap">Category</Link>
           <Link href="#" className="hover:text-primary transition-colors whitespace-nowrap">Explore Products</Link>
         </nav>
+
+        {/*ICON*/}
         <div className="flex items-center gap-4 md:gap-8">
           <FiSearch size={22} />
           <div className="relative">
