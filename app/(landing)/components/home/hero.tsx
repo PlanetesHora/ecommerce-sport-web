@@ -4,80 +4,73 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen overflow-hidden">
-      {/* BACKGROUND BASKETBALL */}
+    // Gunakan min-h-screen agar kalau kontennya panjang, section-nya ikut memanjang
+    <section id="hero-section" className="pagar-konten relative min-h-screen flex items-center pt-28 lg:pt-0 overflow-hidden translate-y-8">
+      
+      {/* Background Basketball dibuat lebih kecil & transparan agar tidak "penuh" */}
       <Image
         src="/images/img-basketball.png"
-        width={432}
-          height={423}
-          alt="image sporton"
-          className="grayscale absolute left-[120px] top-1/2-translate-y-1/2 opacity20 grayscale z-[1] pointer-events-none"/>
-      <div className="container mx-auto flex h-full items-center">
-        {/* LEFT */}
-        <div className="relative z-10 w-[55%]">
-          <div className="mb-6 inline-block rounded-full bg-orange-100 px-4 py-1 text-sm italic text-primary">
-            Friday Sale, 50%
-          </div>
+        width={460} 
+        height={460}
+        alt="image sporton"
+        className="grayscale absolute left-0 top-1/4 opacity 20 pointer-events-none hidden md:block -translate-y-24 -translate-x-16"
+      />
 
-          {/* TITLE */}
-          <div className="max-w-[640px]">
-            <h1 className="font-extrabold italic text-[88px] leading-[1.05] text-black">
-              WEAR YOUR
-            </h1>
+      <div className="relative z-10 w-full flex flex-col lg:flex-row items-center justify-between gap-10">
+        
+        {/* SISI KIRI: TEKS */}
+        <div className="w-full lg:w-[55%]">
+          <div className="text-primary italic font-semibold mb-3 translate-x-40">Friday Sale, 50%</div>
+          
+          {/* PERUBAHAN UTAMA: Ukuran font diperkecil untuk layar menengah */}
+          <h1 className="font-extrabold italic leading-[1.05] bg-gradient-to-b from-black to-[#979797] bg-clip-text text-transparent
+            text-4xl       /* HP */
+            md:text-6xl    /* Tablet */
+            xl:text-[75px] /* Layar kamu (1272px) - diturunin dikit dari 80px biar lega */
+            2xl:text-[95px] /* Monitor Gede */
+          translate-x-38">
+            WEAR YOUR <br /> TOP-QUALITY <br /> SPORTSWEAR
+          </h1>
 
-            <h1 className="font-extrabold italic text-[88px] leading-[1.05] text-gray-00">
-              TOP-QUALITY
-            </h1>
-
-            <h1 className="font-extrabold italic text-[88px] leading-[1.05] text-gray-500">
-              SPORTSWEAR
-            </h1>
-          </div>
-
-          <p className="mt-8 max-w-[520px] leading-loose text-gray-600">
+          <p className="w-full md:w-5/6 mt-6 text-sm md:text-base leading-relaxed text-gray-600 translate-x-40">
             Engineered for endurance and designed for speed. Experience gear
             that moves as fast as you do. Premium fabrics. Unmatched comfort.
             Limitless motion.
           </p>
 
-          <div className="mt-12 flex items-center gap-6">
+          <div className="flex flex-wrap gap-4 mt-8 translate-x-40">
             <Button>
               Explore More <FiFastForward />
             </Button>
-
-            <Button variant="ghost" className="flex items-center gap-3">
+            <Button variant="ghost" className="flex items-center gap-2">
               Watch Video
-              <Image
-                src="/images/icon-play-video.svg"
-                alt="play video"
-                width={28}
-                height={28}
-              />
+              <Image src="/images/icon-play-video.svg" alt="icon playvideo" width={24} height={24} />
             </Button>
           </div>
         </div>
 
-        {/* RIGHT */}
-        <div className="relative w-[45%]">
+        {/* SISI KANAN: GAMBAR */}
+        <div className="relative w-full lg:w-[45%] flex justify-center lg:justify-end">
           <Image
             src="/images/img-hero.png"
-            width={760}
-            height={940}
-            alt="hero product"
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20"
+            width={700} 
+            height={950}
+            alt="image sporton hero"
+            // Gambar dibatasi lebarnya agar tidak menabrak teks di layar < 1300px
+            className="w-full max-w-[320px] md:max-w-[420px] xl:max-w-[500px] h-auto z-20 relative -translate-x-32"
             priority
+          />
+          
+          {/* Ornamen Lingkaran dibuat mengikuti ukuran gambar */}
+          <Image
+            src="/images/img-ornamen-hero.svg"
+            width={420}
+            height={420}
+            alt="ornament"
+            className="absolute -right-[300px] top-1/2 -translate-y-1/2 "
           />
         </div>
       </div>
-
-      {/* ORNAMENT */}
-      <Image
-        src="/images/img-ornament-hero.svg"
-        width={480}
-        height={480}
-        alt="ornament"
-        className="absolute right-[-280px] top-1/2 -translate-y-1/2 z-0"
-      />
     </section>
   );
 };

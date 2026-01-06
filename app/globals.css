@@ -7,7 +7,7 @@
   --primary-light: #f4ebeb;
 }
 
-@theme inline {
+@theme {
   --color-dark: var(--dark);
   --color-dark-alternate: var(--dark-alternate);
   --color-primary: var(--primary);
@@ -15,23 +15,51 @@
   --font-poppins: var(--font-poppins);
 }
 
-html {
-  overflow-x: hidden;
+/* --- INI KUNCI BIAR GAK MEPET --- */
+.pagar-konten {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;  /* Jarak HP */
+  padding-right: 1rem;
 }
 
-body {
-  min-height: 100vh;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+/* Jarak aman di layar Laptop (< 1300px) */
+@media (min-width: 1024px) {
+  .pagar-konten {
+    padding-left: 60px; /* Dikurangi dari 98px biar gak terlalu sesak di layar kecil */
+    padding-right: 60px;
+  }
+}
+
+/* Jarak aman di layar Desktop Gede (> 1440px) */
+@media (min-width: 768px) {
+  .pagar-konten {
+    padding-left: 2.5rem; /* Jarak Tablet */
+    padding-right: 2.5rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  body {
-    padding-left: 98px;
+  .pagar-konten {
+    padding-left: 60px; /* Jarak Laptop kamu (1272px) */
+    padding-right: 60px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pagar-konten {
+    padding-left: 98px; /* Jarak Monitor Gede */
     padding-right: 98px;
   }
 }
 
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 * {
-  @apply font-poppins;
+  font-family: var(--font-poppins), sans-serif;
 }
