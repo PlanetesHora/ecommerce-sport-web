@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-dark-alternate text-white mt-32 md:mt-52">
+    <footer className="bg-dark-alternate text-white">
 
       {/*BAGIAN ATAS UNTUK BRANDING DAN LINKS*/}
       <div className="pagar-konten flex flex-col lg:flex-row justify-between pt-16 pb-16 gap-12 lg:gap-20">
