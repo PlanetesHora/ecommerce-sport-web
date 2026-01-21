@@ -5,9 +5,10 @@ import { FiImage, FiTrash2, FiUploadCloud } from "react-icons/fi";
 
 type TFileUploadProps = {
     onFileSelect?: (file: File | null) => void;
+    className?: string;
 };
 
-const FileUpload = ({onFileSelect}: TFileUploadProps) => {
+const FileUpload = ({onFileSelect, className}: TFileUploadProps) => {
     const [file, setFile] = useState<File | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -32,7 +33,7 @@ const FileUpload = ({onFileSelect}: TFileUploadProps) => {
                 e.preventDefault();
                 handleFileChange(e.dataTransfer.files?.[0]);
             }}
-            className="flex flex-col justify-center items-center w-full py-6 border border-dashed border-primary bg-primary-light">
+            className={`flex flex-col justify-center items-center w-full border border-dashed border-primary bg-primary-light transition-all cursor-pointer ${className}`}>
             <input
                 type="file"
                 className="hidden"
