@@ -17,7 +17,7 @@ const OrderStatus = async ({ params }: TPageProps) => {
                 <h1 className="text-5xl font-bold text-center mb-11">Order Status</h1>
             </div>
             <div className="flex justify-center mb-20">
-                {transaction.status === "pending" && <OrderSubmitted />}
+                {transaction.status === "pending" && <OrderSubmitted onRefresh={() => window.location.reload()} />}
                 {transaction.status === "paid" && <OrderConfirmed />}
                 {transaction.status === "rejected" && <OrderRejected />}
             </div>
