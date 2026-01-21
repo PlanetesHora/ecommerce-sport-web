@@ -1,52 +1,75 @@
-import CardWithHeader from "../ui/card-with-header";
+"use client";
 
-const OrderInformation = () => {
-  // Mantra untuk class input agar tidak tulis berulang-ulang
-  const inputClass = "w-full bg-gray-100 p-3 rounded-lg outline-none focus:bg-gray-200 transition-all text-sm placeholder:text-gray-400";
+import { useState } from "react";
+import CardWithHeader from "../ui/card-with-header";
+import { CustomerInfo } from "@/app/hooks/use-cart-store";
+
+type TOrderInformationProps = {
+  formData?: CustomerInfo;
+  setFormData?: React.Dispatch<React.SetStateAction<CustomerInfo>>;
+};
+
+const OrderInformation = ({ formData, setFormData }: TOrderInformation) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({ 
+      ...prev, 
+      [e.target.name]: e.target.value 
+    }));
+  };
 
   return (
     <CardWithHeader title="Order Information">
       <div className="p-5 flex flex-col gap-6">
         
         {/* Full Name */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="full_name" className="text-sm font-semibold text-gray-700">
+        <div className="input-group flex flex-col gap-2">
+          <label htmlFor="customerName" className="text-sm font-semibold text-gray-700">
             Full Name
           </label>
           <input
             type="text"
-            id="full_name"
+            className="border border-gray-300 p-2 outline-none focus:border-primary"
             placeholder="Type your full name"
-            className={inputClass}
+            id="customerName"
+            name="customerName"
+            value={formData.customerName}
+            onChange={handleInputChange}
           />
         </div>
 
         {/* Whatsapp Number */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="wa_number" className="text-sm font-semibold text-gray-700">
+        <div className="input-group flex flex-col gap-2">
+          <label htmlFor="customerContact" className="text-sm font-semibold text-gray-700">
             Whatsapp Number
           </label>
           <input
             type="text"
-            id="wa_number"
-            placeholder="+62xxxx"
-            className={inputClass}
+            className="border border-gray-300 p-2 outline-none focus:border-primary"
+            placeholder="Type your whatsapp number"
+            id="customerContact"
+            name="customerContact"
+            value={formData.customerContact}
+            onChange={handleInputChange}
           />
         </div>
 
         {/* Shipping Address */}
-        <div className="flex flex-col gap-2">
-          <label htmlFor="shipping_address" className="text-sm font-semibold text-gray-700">
+        <div className="input-group flex flex-col gap-2">
+          <label htmlFor="customerAddress" className="text-sm font-semibold text-gray-700">
             Shipping Address
           </label>
           <textarea
-            id="shipping_address"
-            placeholder="Example Street, 18, West Jakarta..."
-            rows={5}
-            className={`${inputClass} resize-none h-32`}
+            className="border border-gray-300 p-2 outline-none focus:border-primary"
+            id="customerAddress"
+            name="customerAddress"
+            placeholder="Type your shipping address"
+            rows={7}
+            value={formData.customerAddress}
+            onChange={handleInputChange}
           />
         </div>
-
       </div>
     </CardWithHeader>
   );

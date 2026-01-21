@@ -1,17 +1,16 @@
+import { getImageUrl } from "@/app/lib/api";
+import { Category } from "@/app/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
 
-const categoryList = [
-  { name: "Running", imgUrl: "category-running.png" },
-  { name: "Tennis", imgUrl: "category-tennis.png" },
-  { name: "Basketball", imgUrl: "category-basketball.png" },
-  { name: "Football", imgUrl: "category-football.png" },
-  { name: "Badminton", imgUrl: "category-badminton.png" },
-  { name: "Swimming", imgUrl: "category-swimming.png" },
-];
+type TCategoriesProps = {
+  categories: Category[];
+};
 
-const CategoriesSection = () => {
+const CategoriesSection = ({ categories }: TCategoriesProps) => {
+  console.log(categories);
+
   return (
     <section id="category-section" className="pagar-konten mt-20 lg:mt-32 mb-20">
       
@@ -30,16 +29,16 @@ const CategoriesSection = () => {
 
       {/* GRID KATEGORI */}
       <div className="grid grid-cols-2 md:grid-cols-6 xl:grid-cols-6 gap-4 md:gap-6">
-        {categoryList.map((category, index) => (
+        {categories.map((category) => (
           <div
             className="group rounded-2xl bg-[#F8F8F8] p-6 md:p-8 flex flex-col items-center justify-center 
                        transition-all duration-300 hover:bg-white hover:shadow-2xl hover:shadow-primary/10 
                        hover:-translate-y-2 cursor-pointer border border-transparent hover:border-primary/20"
-            key={index}
+            key={category._id}
           >
             <div className="relative w-20 h-20 mb-4">
               <Image
-                src={`/images/categories/${category.imgUrl}`}
+                src={getImageUrl(category.imageUrl)}
                 alt={category.name}
                 fill
                 className="object-contain"
