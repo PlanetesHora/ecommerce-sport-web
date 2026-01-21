@@ -13,11 +13,13 @@ const OrderInformation = ({ formData, setFormData }: TOrderInformation) => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ 
-      ...prev, 
+    setFormData?.((prev) => ({ 
+    ...prev, 
       [e.target.name]: e.target.value 
     }));
   };
+
+  if (!formData) return null;
 
   return (
     <CardWithHeader title="Order Information">
@@ -50,7 +52,7 @@ const OrderInformation = ({ formData, setFormData }: TOrderInformation) => {
             placeholder="Type your whatsapp number"
             id="customerContact"
             name="customerContact"
-            value={formData.customerContact}
+            value={formData?.customerContact ?? ""}
             onChange={handleInputChange}
           />
         </div>
@@ -66,7 +68,7 @@ const OrderInformation = ({ formData, setFormData }: TOrderInformation) => {
             name="customerAddress"
             placeholder="Type your shipping address"
             rows={7}
-            value={formData.customerAddress}
+            value={formData?.customerAddress ?? ""}
             onChange={handleInputChange}
           />
         </div>
