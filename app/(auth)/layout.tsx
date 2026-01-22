@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
-import Header from "./components/layouts/header";
-import Footer from "./components/layouts/footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -11,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "SportOn Website",
+  title: "SportOn Admin - Login",
   description:
     "Engineered for endurance and designed for speed. Experience gear that moves as fast as you do. Premium fabrics. Unmatched comfort. Limitless motion.",
 };
@@ -22,14 +20,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${poppins.variable} antialiased flex flex-col min-h-screen`}>
-        <Header />
-        <main className="flex-grow">
-        {children}
-        </main>
-        <Footer />
-      </body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${poppins.variable} antialiased bg-[#F7F9FA]`}>{children}</body>
     </html>
   );
 }
