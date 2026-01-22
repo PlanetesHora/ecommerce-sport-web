@@ -47,7 +47,7 @@ const TransactionTable = ({ onViewDetails }: TTransactionTableProps) => {
       <table className="w-full text-left border-collapse min-w-[800px] table-fixed">
         <thead>
           <tr className="border-b border-gray-200 bg-gray-50/50">
-            <th className="px-6 py-4 font-semibold w-[15%]">Date</th>
+            <th className="px-6 py-4 font-semibold w-[25%]">Date</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Customer</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Contact</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Total</th>
