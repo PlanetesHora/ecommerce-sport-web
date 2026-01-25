@@ -1,10 +1,22 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "../ui/button";
 import { FiRefreshCw } from "react-icons/fi";
 
-const OrderSubmitted = ({ onRefresh }: { onRefresh: () => void }) => {
+const OrderSubmitted = () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            // Ini akan memicu pengambilan data ulang di Server Component (page.tsx)
+            router.refresh(); 
+        }, 5000); // Cek setiap 5 detik
+
+        return () => clearInterval(interval); 
+    }, [router]);
 
     return (
         <div className="bg-white w-160 p-16 flex flex-col justify-center items-center mx-auto">
@@ -20,7 +32,7 @@ const OrderSubmitted = ({ onRefresh }: { onRefresh: () => void }) => {
                     payment status, please wait and your order status will be updated in
                     less than 12 hours.
                 </p>
-                <Button variant="dark" className="w-full" onClick={onRefresh}>
+                <Button variant="dark" className="w-full" onClick={() => router.refresh()}>
                 <FiRefreshCw className="mr-2" />
                 Refresh Order Status
                 </Button>
