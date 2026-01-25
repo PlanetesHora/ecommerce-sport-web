@@ -5,8 +5,10 @@ import { login } from "@/app/services/auth.service";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,15 +77,15 @@ const LoginPage = () => {
         <div className="input-group-admin mb-10 md:mb-12">
           <label htmlFor="password">Password</label>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             id="password"
             name="password"
             placeholder="••••••••••••••••••••"
-            className="rounded-lg!"
+            className="rounded-lg! w-full pr-12"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
+          </div>
 
         <Button
           className="w-full rounded-lg! mb-6 md:mb-8" onClick={handleLogin}>
