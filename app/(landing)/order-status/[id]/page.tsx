@@ -5,6 +5,8 @@ import { getTransactionById } from "@/app/services/transaction.service";
 import { TPageProps } from "../../product/[id]/page";
 import OrderRejected from "../../components/order-status/order-rejected";
 
+export const dynamic = 'force-dynamic';
+
 const OrderStatus = async ({ params }: TPageProps) => {
   const { id } = await params;
 
@@ -17,9 +19,9 @@ const OrderStatus = async ({ params }: TPageProps) => {
                 <h1 className="text-5xl font-bold text-center mb-11">Order Status</h1>
             </div>
             <div className="flex justify-center mb-20">
-                {transaction.status === "pending" && <OrderSubmitted onRefresh={() => window.location.reload()} />}
-                {transaction.status === "paid" && <OrderConfirmed />}
-                {transaction.status === "rejected" && <OrderRejected />}
+            {transaction.status === "pending" && <OrderSubmitted />}
+            {transaction.status === "paid" && <OrderConfirmed />}
+            {transaction.status === "rejected" && <OrderRejected />}
             </div>
         </main>
     );

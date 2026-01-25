@@ -1,3 +1,4 @@
+import { Transaction } from "@/app/types";
 import priceFormatter from "@/app/utils/price-formatter";
 import { FiEdit2, FiEye, FiTrash2 } from "react-icons/fi";
 
@@ -26,10 +27,14 @@ const transactionData = [
 ];
 
 type TTransactionTableProps = {
-  onViewDetails: () => void;
+  onViewDetails: (transaction: Transaction) => void;
+  transactions: Transaction[];
 };
 
-const TransactionTable = ({ onViewDetails }: TTransactionTableProps) => {
+const TransactionTable = ({
+  onViewDetails,
+  transactions,
+}: TTransactionTableProps) => {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case "pending":
@@ -42,12 +47,12 @@ const TransactionTable = ({ onViewDetails }: TTransactionTableProps) => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
-      <div className="overflow-x-auto">
+    <div className="w-full max-w-full bg-white rounded-xl border border-gray-200 overflow-hidden">
+      <div className="w-full overflow-x-auto block">
       <table className="w-full text-left border-collapse min-w-[800px] table-fixed">
         <thead>
           <tr className="border-b border-gray-200 bg-gray-50/50">
-            <th className="px-6 py-4 font-semibold w-[25%]">Date</th>
+            <th className="px-6 py-4 font-semibold w-[20%]">Date</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Customer</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Contact</th>
             <th className="px-6 py-4 font-semibold w-[15%]">Total</th>
@@ -56,44 +61,64 @@ const TransactionTable = ({ onViewDetails }: TTransactionTableProps) => {
           </tr>
         </thead>
         <tbody>
-          {transactionData.map((data, index) => (
-            <tr
-              key={index}
-              className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50/50 transition-colors"
-            >
-              <td className="px-6 py-4 font-medium whitespace-nowrap">{data.date}</td>
-              <td className="px-6 py-4 font-medium relative group">
-                <div className="truncate max-w-[150px]">{data.customer}</div>
-                <div className="absolute invisible group-hover:visible bg-gray-900 text-white text-xs p-2 rounded-md -top-2 left-6 z-50 whitespace-nowrap shadow-xl">
-                {data.customer}
-                    <div className="absolute -bottom-1 left-2 w-2 h-2 bg-gray-900 rotate-45"></div>
-                </div>
-              </td>
-              <td className="px-6 py-4 font-medium whitespace-nowrap">{data.contact}</td>
-              <td className="px-6 py-4 font-medium whitespace-nowrap">
-                {priceFormatter(data.total)}
-              </td>
+        {transactions.map((data) => (
+        <tr
+            key={data._id}
+            className="border-b border-gray-200 last:border-b-0 hover:bg-gray-50/50 transition-colors"
+        >
+        {/*Kolom Date */}
+        <td className="px-6 py-4 font-medium whitespace-nowrap">
+        {new Date(data.createdAt).toLocaleDateString("id-ID", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        })}
+        </td>
 
-              <td className="px-6 py-4 font-medium text-center">
-                <div
-                  className={`px-3 py-1 rounded-full border text-center w-fit text-[11px] font-bold uppercase tracking-wider ${getStatusColor(
+        {/* Kolom Customer */}
+        <td className="px-6 py-4 font-medium relative group">
+            <span className="truncate max-w-[150px] block cursor-help">{data.customerName}</span>
+            <span className="absolute invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity bg-gray-900 text-white text-xs p-2 rounded-md -top-2 left-10 z-50 whitespace-nowrap shadow-xl pointer-events-none">
+            {data.customerName}
+            <div className="absolute -bottom-1 left-2 w-2 h-2 bg-gray-900 rotate-45"></div>
+            </span>
+        </td>
+
+        {/* Kolom Contact */}
+        <td className="px-6 py-4 font-medium">
+            {data.customerContact || "-"}
+        </td>
+
+        {/*Kolom Total */}
+        <td className="px-6 py-4 font-medium">
+            {priceFormatter(parseInt(data.totalPayment))}
+        </td>
+
+        {/* Kolom Status */}
+        <td className="px-6 py-4 font-medium">
+            <div
+                className={`px-4 py-1 rounded-full border text-center w-fit text-sm uppercase ${getStatusColor(
                     data.status
-                  )}`}
-                >
-                  {data.status}
-                </div>
-              </td>
-              <td className="p-0">
-                <button
-                  onClick={onViewDetails}
-                  className="flex items-center gap-2 cursor-pointer hover:bg-primary/10 hover:text-primary transition-all w-fit py-1.5 px-1 rounded-md border border-transparent hover:border-primary/20 text-sm font-semibold text-gray-600"
-                >
-                  <FiEye size={18} />
-                  <span className="whitespace-nowrap">View Details</span>
-                </button>
-              </td>
-            </tr>
-          ))}
+                )}`}
+            >
+                {data.status}
+            </div>
+        </td>
+
+        {/* 6. Kolom Actions */}
+        <td className="px-6 py-4 flex items-center gap-3 text-gray-600">
+            <button
+                onClick={() => onViewDetails(data)}
+                className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 w-fit py-1 px-2 rounded-md"
+            >
+            <FiEye size={18} />
+            View Details
+            </button>
+        </td>
+        </tr>
+        ))}
         </tbody>
       </table>
       </div>
