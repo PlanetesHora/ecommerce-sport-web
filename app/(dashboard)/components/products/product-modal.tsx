@@ -236,7 +236,6 @@ const ProductModal = ({
         <div className="flex justify-end mt-2">
           <Button 
             className="bg-[#FF6B4A] hover:bg-[#ff5733] text-white px-8 py-2.5 rounded-lg font-semibold transition-all" 
-            onClick={handleSubmit}
             disabled={isSubmitting}
             type="submit">
             {isEditMode ? "Update Product" : "Create Product"}
