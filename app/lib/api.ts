@@ -23,8 +23,11 @@ export async function fetchAPI<T>(
 }
 
 export function getImageUrl(path: string) {
-  if (path.startsWith("http")) return path; // artinya url nya sudah valid
-  return `${process.env.NEXT_PUBLIC_API_ROOT}/${path}`;
+  if (!path) return "/placeholder.png";
+  if (path.startsWith("http")) return path;
+  const rootUrl = process.env.NEXT_PUBLIC_API_ROOT || process.env.NEXT_PUBLIC_API_URL || "";
+  const cleanRoot = rootUrl.replace(/\/api$/, "");
+  return `${cleanRoot}/${path.startsWith('/') ? path.substring(1) : path}`;
 }
 
 export function getAuthHeaders() {
